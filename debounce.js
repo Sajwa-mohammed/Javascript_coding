@@ -1,23 +1,23 @@
 function debounce(fn,delay){
     let timer;
-    return function(){
-        clearTimeout(timer);
+    return function(...args){
+        clearTimeout(timer)
         timer=setTimeout(()=>{
-            fn();
+            fn(...args)
         },delay)
     }
+
 }
 
-const search=debounce(()=>{
-    console.log("API call");
+const search=debounce((value)=>{
+    console.log("searching for value:",value);
     
-},500);
+},500)
 
-setTimeout(() => {
-    search();
-}, 800);
+search("r");
 
-search();
-search();
-search();
-search();
+setTimeout(() => search("re"), 200);
+
+setTimeout(() => search("rea"), 300);
+
+setTimeout(() => search("react"), 400);
